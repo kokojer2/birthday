@@ -1,10 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Вопрос 1 из 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('./kruassani-yellow.jpg');
+            color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 24px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .counter {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background: #4caf50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #43a047;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error {
+            color: #ff5252;
+        }
+
+        .success {
+            color: #4caf50;
+        }
+    </style>
 </head>
 <body>
-    Биба боба
+
+<div class="card">
+    <div class="counter">
+        Вопрос <strong>1</strong> из <strong>6</strong>
+    </div>
+
+    <div class="question">
+        Как называется язык программирования, на котором написан этот скрипт?
+    </div>
+
+    <input
+            type="text"
+            id="answerInput"
+            placeholder="Введите ответ..."
+    />
+
+    <button onclick="checkAnswer()">Подтвердить</button>
+
+    <div id="errorMessage" class="message error">
+        Неверный ответ. Попробуй ещё раз.
+    </div>
+
+    <div id="successMessage" class="message success">
+        Верно! 🎉
+        <br />
+        Этот скрипт написан на JavaScript и выполняется прямо в браузере.
+    </div>
+</div>
+
+<script>
+    // ПРАВИЛЬНЫЙ ОТВЕТ (находится прямо в HTML)
+    const correctAnswer = "javascript";
+
+    function checkAnswer() {
+        const input = document.getElementById("answerInput");
+        const userAnswer = input.value.trim().toLowerCase();
+
+        const errorMessage = document.getElementById("errorMessage");
+        const successMessage = document.getElementById("successMessage");
+
+        // Сброс сообщений
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
+
+        if (userAnswer === correctAnswer) {
+            successMessage.style.display = "block";
+        } else {
+            errorMessage.style.display = "block";
+        }
+    }
+</script>
+
 </body>
 </html>
