@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Вопрос 1 из 6</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .card {
+        background: #1e1e1e;
+        padding: 24px;
+        border-radius: 8px;
+        width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .counter {
+        font-size: 14px;
+        color: #aaa;
+        margin-bottom: 8px;
+      }
+
+      .question {
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      main {
+        display: none;
+        background-image: url("images/kruassani-yellow.jpg");
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 12px;
+        border-radius: 4px;
+        border: none;
+        box-sizing: border-box;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background: #4caf50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #43a047;
+      }
+
+      .message {
+        margin-top: 12px;
+        font-size: 14px;
+        display: none;
+      }
+
+      .error {
+        color: #ff5252;
+      }
+
+      .success {
+        color: #4caf50;
+      }
+
+      .birthday-placeholder {
+        display: none;
+        overflow: hidden;
+        background-image: url("images/placeholder.jpg");
+        background-size: cover;
+        background-position: right;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100dvh;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .birthday-placeholder h1 {
+        font-family: "Romantic", serif;
+        font-size: 65px;
+      }
+
+      .timer{
+        font-family: "Romantic", serif;
+        font-size: 40px;
+        margin-bottom: 5px;
+      }
+
+      .ps{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        font-family: "Romantic", serif;
+        font-size: 20px;
+        padding: 10px;
+        backdrop-filter: blur(10px);
+      }
+
+      @font-face {
+        font-family: "Romantic";
+        src: url("fonts/myra-4f-caps-bold.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <div class="counter">
+          Вопрос <strong>1</strong> из <strong>6</strong>
+        </div>
+
+        <div class="question">
+          Как называется язык программирования, на котором написан этот скрипт?
+        </div>
+
+        <input type="text" id="answerInput" placeholder="Введите ответ..." />
+
+        <button onclick="checkAnswer()">Подтвердить</button>
+
+        <div id="errorMessage" class="message error">
+          Неверный ответ. Попробуй ещё раз.
+        </div>
+
+        <div id="successMessage" class="message success">
+          Верно! 🎉
+          <br />
+          Этот скрипт написан на JavaScript и выполняется прямо в браузере.
+        </div>
+      </div>
+    </main>
+    <div class="birthday-placeholder">
+      <h1>Откроется 31 января ❤️</h1>
+      <div class="timer"></div>
+      <div class="ps">P.S Просьба положить открыточку на место :)</div>
+    </div>
+
+    <script>
+      // ПРАВИЛЬНЫЙ ОТВЕТ (находится прямо в HTML)
+      const correctAnswer = "javascript";
+
+      function checkAnswer() {
+        const input = document.getElementById("answerInput");
+        const userAnswer = input.value.trim().toLowerCase();
+
+        const errorMessage = document.getElementById("errorMessage");
+        const successMessage = document.getElementById("successMessage");
+
+        // Сброс сообщений
+        errorMessage.style.display = "none";
+        successMessage.style.display = "none";
+
+        if (userAnswer === correctAnswer) {
+          successMessage.style.display = "block";
+        } else {
+          errorMessage.style.display = "block";
+        }
+      }
+
+      function startCountdown() {
+        const timerEl = document.querySelector(".timer");
+        const targetDate = new Date("2026-01-31T00:00:00");
+
+        function updateTimer() {
+          const now = new Date();
+          const diff = targetDate - now;
+
+          if (diff <= 0) {
+            timerEl.textContent = "🎉 Обнови страничку!";
+            clearInterval(interval);
+            return;
+          }
+
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+                  (diff / (1000 * 60 * 60)) % 24
+          );
+          const minutes = Math.floor(
+                  (diff / (1000 * 60)) % 60
+          );
+          const seconds = Math.floor(
+                  (diff / 1000) % 60
+          );
+
+          timerEl.textContent = `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
+        }
+
+        updateTimer();
+        const interval = setInterval(updateTimer, 1000);
+      }
+
+      window.onload = () => {
+        const mainContent = document.querySelector("main");
+        const placeholderContent = document.querySelector(
+          ".birthday-placeholder"
+        );
+
+        const currentDate = new Date();
+        const birthdayDate = new Date("2026-01-31");
+        if (birthdayDate < currentDate) {
+          mainContent.style.display = "flex";
+        } else {
+          placeholderContent.style.display = "flex";
+          startCountdown();
+        }
+      };
+    </script>
+  </body>
+</html>
