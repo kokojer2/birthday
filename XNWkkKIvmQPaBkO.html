@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Вопрос 1 из 6</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вопрос 2 из 6</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,6 +24,10 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     }
 
+    .card-success {
+      display: none;
+    }
+
     .counter {
       font-size: 14px;
       color: #aaa;
@@ -36,12 +41,20 @@
 
     main {
       display: none;
-      background-image: url("images/kruassani-yellow.jpg");
+      background-image: url("./images/kotiki.jpg");
+      background-size: cover;
+      width: 100dvw;
+      height: 100dvh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 24px;
+      font-family: "Romantic", serif;
     }
 
     input {
       width: 100%;
-      padding: 10px;
+      padding: 15px;
       font-size: 16px;
       margin-bottom: 12px;
       border-radius: 4px;
@@ -51,12 +64,13 @@
 
     button {
       width: 100%;
-      padding: 10px;
+      padding: 15px;
       font-size: 16px;
       background: #4caf50;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
+      font-family: "Romantic", serif;
+      border-radius: 10px;
     }
 
     button:hover {
@@ -65,7 +79,7 @@
 
     .message {
       margin-top: 12px;
-      font-size: 14px;
+      font-size: 20px;
       display: none;
     }
 
@@ -75,6 +89,10 @@
 
     .success {
       color: #4caf50;
+    }
+
+    .warning{
+      color: #ed832a;
     }
 
     .birthday-placeholder {
@@ -98,13 +116,13 @@
       font-size: 65px;
     }
 
-    .timer{
+    .timer {
       font-family: "Romantic", serif;
       font-size: 40px;
       margin-bottom: 5px;
     }
 
-    .ps{
+    .ps {
       position: absolute;
       right: 10px;
       bottom: 10px;
@@ -121,32 +139,57 @@
       font-style: normal;
       font-display: swap;
     }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+        box-sizing: border-box;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .birthday-placeholder h1 {
+        font-size: 30px;
+      }
+
+      .timer {
+        font-size: 17px;
+      }
+
+      .ps {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
 <main>
   <div class="card">
+    Продолжим. <br />
+    Перенесёмся в октябрь 🍂
+  </div>
+  <div class="card">
     <div class="counter">
-      Вопрос <strong>1</strong> из <strong>6</strong>
+      Вопрос <strong>2</strong> из <strong>6</strong>
     </div>
 
     <div class="question">
-      Как называется язык программирования, на котором написан этот скрипт?
+      В Питере за романтическим столом из закусок было: виноград, шоколадка, прошутто и ...
     </div>
 
-    <input type="text" id="answerInput" placeholder="Введите ответ..." />
+    <input type="text" id="answerInput" placeholder="Например: жареные гвозди" />
 
     <button onclick="checkAnswer()">Подтвердить</button>
 
     <div id="errorMessage" class="message error">
-      Неверный ответ. Попробуй ещё раз.
+      Aйайай. Попробуй ещё раз.
     </div>
 
-    <div id="successMessage" class="message success">
-      Верно! 🎉
-      <br />
-      Этот скрипт написан на JavaScript и выполняется прямо в браузере.
-    </div>
+    <div id="successMessage" class="message success">Верно! 🎉</div>
+    <div id="almostSuccessMessage" class="message warning">Почти! Конкретно какой сыр?</div>
+  </div>
+  <div class="card card-success">
+    <p>Следующая карточка находится очень близко к сосуду в котором нагревается жидкость 🤓</p>
   </div>
 </main>
 <div class="birthday-placeholder">
@@ -157,7 +200,8 @@
 
 <script>
   // ПРАВИЛЬНЫЙ ОТВЕТ (находится прямо в HTML)
-  const correctAnswer = "javascript";
+  const correctAnswer = "моцарелла";
+  const almostCorrectAnswer = "сыр";
 
   function checkAnswer() {
     const input = document.getElementById("answerInput");
@@ -165,14 +209,20 @@
 
     const errorMessage = document.getElementById("errorMessage");
     const successMessage = document.getElementById("successMessage");
+    const almostSuccessMessage = document.getElementById("almostSuccessMessage");
+    const successCard = document.querySelector(".card-success");
 
     // Сброс сообщений
     errorMessage.style.display = "none";
     successMessage.style.display = "none";
+    almostSuccessMessage.style.display = "none";
 
     if (userAnswer === correctAnswer) {
       successMessage.style.display = "block";
-    } else {
+      successCard.style.display = "block";
+    } else if(userAnswer === almostCorrectAnswer) {
+      almostSuccessMessage.style.display = "block";
+    }else{
       errorMessage.style.display = "block";
     }
   }
@@ -192,15 +242,9 @@
       }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-              (diff / (1000 * 60 * 60)) % 24
-      );
-      const minutes = Math.floor(
-              (diff / (1000 * 60)) % 60
-      );
-      const seconds = Math.floor(
-              (diff / 1000) % 60
-      );
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
       timerEl.textContent = `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
     }
