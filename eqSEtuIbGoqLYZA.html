@@ -1,229 +1,263 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Вопрос 1 из 6</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        color: #eee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100dvh;
-        overflow: hidden;
-        margin: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вопрос 4 из 6</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100dvh;
+      overflow: hidden;
+      margin: 0;
+    }
 
+    .card {
+      background: #1e1e1e;
+      padding: 24px;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-success {
+      display: none;
+    }
+
+    .counter {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .question {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    main {
+      display: none;
+      background-image: url("./images/kamen.png");
+      background-size: cover;
+      width: 100dvw;
+      height: 100dvh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 24px;
+      font-family: "Romantic", serif;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      background: #4caf50;
+      border: none;
+      cursor: pointer;
+      font-family: "Romantic", serif;
+      border-radius: 10px;
+    }
+
+    button:hover {
+      background: #43a047;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-size: 20px;
+      display: none;
+    }
+
+    .error {
+      color: #ff5252;
+    }
+
+    .success {
+      color: #4caf50;
+    }
+
+    .warning{
+      color: #ed832a;
+    }
+
+    .birthday-placeholder {
+      display: none;
+      overflow: hidden;
+      background-image: url("images/placeholder.jpg");
+      background-size: cover;
+      background-position: right;
+      backdrop-filter: blur(10px);
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100dvh;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .birthday-placeholder h1 {
+      font-family: "Romantic", serif;
+      font-size: 65px;
+    }
+
+    .timer {
+      font-family: "Romantic", serif;
+      font-size: 40px;
+      margin-bottom: 5px;
+    }
+
+    .ps {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-family: "Romantic", serif;
+      font-size: 20px;
+      padding: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    @font-face {
+      font-family: "Romantic";
+      src: url("fonts/myra-4f-caps-bold.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @media (max-width: 600px) {
       .card {
-        background: #1e1e1e;
-        padding: 24px;
-        border-radius: 8px;
-        width: 400px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      }
-
-      .counter {
-        font-size: 14px;
-        color: #aaa;
-        margin-bottom: 8px;
-      }
-
-      .question {
-        font-size: 18px;
-        margin-bottom: 16px;
-      }
-
-      main {
-        display: none;
-        background-image: url("images/kruassani-yellow.jpg");
-      }
-
-      input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        margin-bottom: 12px;
-        border-radius: 4px;
-        border: none;
+        width: 90%;
         box-sizing: border-box;
       }
+    }
 
-      button {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        background: #4caf50;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background: #43a047;
-      }
-
-      .message {
-        margin-top: 12px;
-        font-size: 14px;
-        display: none;
-      }
-
-      .error {
-        color: #ff5252;
-      }
-
-      .success {
-        color: #4caf50;
-      }
-
-      .birthday-placeholder {
-        display: none;
-        overflow: hidden;
-        background-image: url("images/placeholder.jpg");
-        background-size: cover;
-        background-position: right;
-        backdrop-filter: blur(10px);
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100dvh;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-      }
-
+    @media (max-width: 600px) {
       .birthday-placeholder h1 {
-        font-family: "Romantic", serif;
-        font-size: 65px;
+        font-size: 30px;
       }
 
-      .timer{
-        font-family: "Romantic", serif;
-        font-size: 40px;
-        margin-bottom: 5px;
+      .timer {
+        font-size: 17px;
       }
 
-      .ps{
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        font-family: "Romantic", serif;
+      .ps {
         font-size: 20px;
-        padding: 10px;
-        backdrop-filter: blur(10px);
       }
-
-      @font-face {
-        font-family: "Romantic";
-        src: url("fonts/myra-4f-caps-bold.woff2") format("woff2");
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <div class="card">
-        <div class="counter">
-          Вопрос <strong>1</strong> из <strong>6</strong>
-        </div>
-
-        <div class="question">
-          Как называется язык программирования, на котором написан этот скрипт?
-        </div>
-
-        <input type="text" id="answerInput" placeholder="Введите ответ..." />
-
-        <button onclick="checkAnswer()">Подтвердить</button>
-
-        <div id="errorMessage" class="message error">
-          Неверный ответ. Попробуй ещё раз.
-        </div>
-
-        <div id="successMessage" class="message success">
-          Верно! 🎉
-          <br />
-          Этот скрипт написан на JavaScript и выполняется прямо в браузере.
-        </div>
-      </div>
-    </main>
-    <div class="birthday-placeholder">
-      <h1>Откроется 31 января ❤️</h1>
-      <div class="timer"></div>
-      <div class="ps">P.S Просьба положить открыточку на место :)</div>
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="card">
+    🙈🙈🙈
+  </div>
+  <div class="card">
+    <div class="counter">
+      Вопрос <strong>4</strong> из <strong>6</strong>
     </div>
 
-    <script>
-      // ПРАВИЛЬНЫЙ ОТВЕТ (находится прямо в HTML)
-      const correctAnswer = "javascript";
+    <div class="question">
+      Сколько денег запросил Артём Ламтев у "миллиардера" на корпоративе у входа в ресторан?
+    </div>
 
-      function checkAnswer() {
-        const input = document.getElementById("answerInput");
-        const userAnswer = input.value.trim().toLowerCase();
+    <input type="text" id="answerInput" placeholder="Например: 100 мильёнов тыщ" />
 
-        const errorMessage = document.getElementById("errorMessage");
-        const successMessage = document.getElementById("successMessage");
+    <button onclick="checkAnswer()">Подтвердить</button>
 
-        // Сброс сообщений
-        errorMessage.style.display = "none";
-        successMessage.style.display = "none";
+    <div id="errorMessage" class="message error">
+      Aйайай. Попробуй ещё раз.
+    </div>
 
-        if (userAnswer === correctAnswer) {
-          successMessage.style.display = "block";
-        } else {
-          errorMessage.style.display = "block";
-        }
+    <div id="successMessage" class="message success">Много, очень много<br/> А на самом деле я сам не помню 😅 По этому движемся дальше!</div>
+  </div>
+  <div class="card card-success">
+    <p>Следующая карточка находится под тем местом где обычно нарезаются овощи 🥒</p>
+  </div>
+</main>
+<div class="birthday-placeholder">
+  <h1>Откроется 31 января ❤️</h1>
+  <div class="timer"></div>
+  <div class="ps">P.S Просьба положить открыточку на место :)</div>
+</div>
+
+<script>
+  function checkAnswer() {
+    const input = document.getElementById("answerInput");
+    const userAnswer = input.value.trim().toLowerCase();
+
+    const errorMessage = document.getElementById("errorMessage");
+    const successMessage = document.getElementById("successMessage");
+    const successCard = document.querySelector(".card-success");
+
+    // Сброс сообщений
+    errorMessage.style.display = "none";
+    successMessage.style.display = "none";
+
+    if (userAnswer) {
+      successMessage.style.display = "block";
+      successCard.style.display = "block";
+    } else{
+      errorMessage.style.display = "block";
+    }
+  }
+
+  function startCountdown() {
+    const timerEl = document.querySelector(".timer");
+    const targetDate = new Date("2026-01-31T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        timerEl.textContent = "🎉 Обнови страничку!";
+        clearInterval(interval);
+        return;
       }
 
-      function startCountdown() {
-        const timerEl = document.querySelector(".timer");
-        const targetDate = new Date("2026-01-31T00:00:00");
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-        function updateTimer() {
-          const now = new Date();
-          const diff = targetDate - now;
+      timerEl.textContent = `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
+    }
 
-          if (diff <= 0) {
-            timerEl.textContent = "🎉 Обнови страничку!";
-            clearInterval(interval);
-            return;
-          }
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+  }
 
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-                  (diff / (1000 * 60 * 60)) % 24
-          );
-          const minutes = Math.floor(
-                  (diff / (1000 * 60)) % 60
-          );
-          const seconds = Math.floor(
-                  (diff / 1000) % 60
-          );
+  window.onload = () => {
+    const mainContent = document.querySelector("main");
+    const placeholderContent = document.querySelector(
+            ".birthday-placeholder"
+    );
 
-          timerEl.textContent = `${days} дней ${hours} часов ${minutes} минут ${seconds} секунд`;
-        }
-
-        updateTimer();
-        const interval = setInterval(updateTimer, 1000);
-      }
-
-      window.onload = () => {
-        const mainContent = document.querySelector("main");
-        const placeholderContent = document.querySelector(
-          ".birthday-placeholder"
-        );
-
-        const currentDate = new Date();
-        const birthdayDate = new Date("2026-01-31");
-        if (birthdayDate < currentDate) {
-          mainContent.style.display = "flex";
-        } else {
-          placeholderContent.style.display = "flex";
-          startCountdown();
-        }
-      };
-    </script>
-  </body>
+    const currentDate = new Date();
+    const birthdayDate = new Date("2026-01-31");
+    if (birthdayDate < currentDate) {
+      mainContent.style.display = "flex";
+    } else {
+      placeholderContent.style.display = "flex";
+      startCountdown();
+    }
+  };
+</script>
+</body>
 </html>
